@@ -1,0 +1,11 @@
+user_id,category,location,urgency,donation_history
+1,Food,New York,Low,5
+2,Clothes,Los Angeles,Medium,3
+3,Money,Chicago,High,10
+4,Blood,Miami,Low,2
+5,Food,New York,Medium,7
+1,Clothes,Los Angeles,High,4
+2,Money,Chicago,Low,8
+3,Blood,Miami,Medium,1
+4,Food,New York,High,6
+5,Clothes,Los Angeles,Low,9

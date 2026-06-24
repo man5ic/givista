@@ -1,0 +1,37 @@
+===========================================
+BACKEND SERVER RESTART COMMANDS
+===========================================
+
+Copy and paste these commands into PowerShell:
+
+---------------------------------------------------------------
+OPTION 1: Quick Restart (if already in backend folder)
+---------------------------------------------------------------
+
+Press Ctrl+C in the backend terminal to stop, then run:
+& "C:\Program Files\nodejs\npm.cmd" run dev
+
+---------------------------------------------------------------
+OPTION 2: Full Restart (from any location)
+---------------------------------------------------------------
+
+cd "C:\Users\ingol\Downloads\givista (7)\givista (5)\givista (2)\givista\givista\backend"
+& "C:\Program Files\nodejs\npm.cmd" run dev
+
+---------------------------------------------------------------
+OPTION 3: Stop All Node Processes and Restart
+---------------------------------------------------------------
+
+Get-Process node -ErrorAction SilentlyContinue | Stop-Process -Force
+cd "C:\Users\ingol\Downloads\givista (7)\givista (5)\givista (2)\givista\givista\backend"
+& "C:\Program Files\nodejs\npm.cmd" run dev
+
+---------------------------------------------------------------
+OPTION 4: Use the Restart Script
+---------------------------------------------------------------
+
+cd "C:\Users\ingol\Downloads\givista (7)\givista (5)\givista (2)\givista\givista\backend"
+.\RESTART_BACKEND.ps1
+
+---------------------------------------------------------------
+
