@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -6,8 +7,30 @@ export default {
     extend: {
       colors: {
         primary: { 50: '#f0f9ff', 100: '#e0f2fe', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1' },
+=======
+  /** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+          500: '#0ea5e9',
+          600: '#0284c7',
+          700: '#0369a1',
+        },
+>>>>>>> 696cb356b46860bca18eb58e67c68483d5d2ca7c
       },
     },
   },
   plugins: [],
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 696cb356b46860bca18eb58e67c68483d5d2ca7c

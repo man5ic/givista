@@ -1,0 +1,277 @@
+<div align="center">
+
+# 🤝 Givista
+
+### AI-Powered Donation Platform
+
+**Connecting donors and recipients through intelligent matching, fraud detection, and real-time tracking.**
+
+[![Status](https://img.shields.io/badge/status-production%20ready-brightgreen?style=flat-square)](/)
+[![Version](https://img.shields.io/badge/version-1.0.0-blue?style=flat-square)](/)
+[![Node](https://img.shields.io/badge/node-v18+-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org)
+[![Python](https://img.shields.io/badge/python-3.8+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
+[![React](https://img.shields.io/badge/react-18-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
+[![MySQL](https://img.shields.io/badge/mysql-8.0+-4479A1?style=flat-square&logo=mysql&logoColor=white)](https://mysql.com)
+
+</div>
+
+---
+
+## What is Givista?
+
+Givista is a full-stack donation platform that connects **Donors** with **Receivers** (individuals, orphanages, NGOs) across four donation categories — Money, Food, Clothes, and Blood. An AI microservice powers smart matching between donors and receivers using TF-IDF vectorization and cosine similarity, with built-in fraud detection to keep the platform trustworthy.
+
+---
+
+## ✨ Features
+
+**Platform**
+- JWT authentication with bcrypt password hashing
+- Three user roles — Donor, Receiver, Admin — with full role-based access control
+- Real-time donation tracking: `Pending → Matched → Dispatched → Received → Completed`
+- Admin verification system for donations
+- In-platform messaging between users
+- Gamification — badges, leaderboards, impact tracking
+
+**AI-Powered**
+- Smart donor–receiver matching via TF-IDF + Cosine Similarity
+- Fraud detection using scikit-learn anomaly detection
+- Pattern analytics across donation activity
+
+---
+
+## 🏗️ Architecture
+
+```
+┌─────────────────┐        ┌─────────────────┐        ┌──────────────────────┐
+│   Frontend      │        │   Backend        │        │   AI Microservice    │
+│                 │        │                  │        │                      │
+│  React 18       │◄──────►│  Node.js         │◄──────►│  Python / Flask      │
+│  TypeScript     │        │  Express         │        │  scikit-learn        │
+│  Tailwind CSS   │        │  Sequelize ORM   │        │                      │
+│  Vite           │        │  JWT Auth        │        │  • Recommendations   │
+│                 │        │                  │        │  • Fraud Detection   │
+│  :5173          │        │  :3000           │        │  :5000               │
+└─────────────────┘        └────────┬─────────┘        └──────────────────────┘
+                                    │
+                           ┌────────▼─────────┐
+                           │   MySQL Database  │
+                           │      :3306        │
+                           └──────────────────┘
+```
+
+###List of Features - check techStack&features file.
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technologies |
+|-------|-------------|
+| **Frontend** | React 18, TypeScript, Vite, Tailwind CSS, React Router DOM, Axios |
+| **Backend** | Node.js, Express, TypeScript, Sequelize ORM, MySQL, JWT, bcrypt, Multer |
+| **AI Service** | Python 3.8+, Flask, scikit-learn, pandas, numpy, flask-cors |
+| **Infrastructure** | Docker, Docker Compose |
+
+---
+
+## 📁 Project Structure
+
+```
+givista/
+├── frontend/
+│   └── src/
+│       ├── components/        # Navbar, ProtectedRoute, etc.
+│       ├── contexts/          # AuthContext
+│       ├── pages/
+│       │   └── dashboards/    # Donor / Receiver / Admin dashboards
+│       ├── types/             # TypeScript interfaces
+│       ├── App.tsx
+│       └── main.tsx
+│
+├── backend/
+│   └── src/
+│       ├── controllers/       # auth, user, donation, request, recommendation, message
+│       ├── models/            # User, Donation, Request, Recommendation, Message
+│       ├── routes/            # auth, user, donation, request, admin
+│       ├── middleware/        # JWT auth middleware
+│       ├── services/          # AI service integration
+│       └── server.ts
+│
+├── ai_service/
+│   ├── app.py                 # Flask app with all endpoints
+│   ├── requirements.txt
+│   ├── model.pkl              # Auto-generated on first run
+│   └── vectorizer.pkl         # Auto-generated on first run
+│
+├── docker-compose.yml
+└── test-integration.sh
+```
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+```bash
+node --version      # v18+
+python --version    # 3.8+
+mysql --version     # 5.7+
+```
+
+### 1. Clone & setup database
+
+```bash
+git clone https://github.com/your-username/givista.git
+cd givista
+mysql -u root -p -e "CREATE DATABASE givista_db;"
+```
+
+### 2. Backend
+
+```bash
+cd backend
+cp .env.example .env    # Fill in your DB credentials and JWT secret
+npm install
+npm run dev             # http://localhost:3000
+```
+
+### 3. Frontend
+
+```bash
+cd frontend
+cp .env.example .env    # Set VITE_API_BASE_URL=http://localhost:3000/api/v1
+npm install
+npm run dev             # http://localhost:5173
+```
+
+### 4. AI Service
+
+```bash
+cd ai_service
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+python app.py           # http://localhost:5000
+```
+
+### Or use Docker
+
+```bash
+docker-compose up -d
+```
+
+---
+
+## ⚙️ Environment Variables
+
+**`backend/.env`**
+```env
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=givista_db
+DB_USER=root
+DB_PASSWORD=your_password
+JWT_SECRET=your_secret_key_min_32_chars
+JWT_EXPIRES_IN=7d
+PORT=3000
+NODE_ENV=development
+AI_SERVICE_URL=http://localhost:5000
+FRONTEND_URL=http://localhost:5173
+```
+
+**`frontend/.env`**
+```env
+VITE_API_BASE_URL=http://localhost:3000/api/v1
+VITE_AI_SERVICE_URL=http://localhost:5000
+```
+
+**`ai_service/.env`**
+```env
+PORT=5000
+FLASK_ENV=development
+CORS_ORIGINS=http://localhost:3000,http://localhost:5173
+```
+
+---
+
+## 📡 API Reference
+
+### Auth
+```
+POST   /api/v1/auth/signup
+POST   /api/v1/auth/login
+```
+
+### Donations
+```
+GET    /api/v1/donations
+POST   /api/v1/donations
+GET    /api/v1/donations/:id
+PUT    /api/v1/donations/:id
+```
+
+### Requests
+```
+GET    /api/v1/requests
+POST   /api/v1/requests
+PUT    /api/v1/requests/:id
+```
+
+### Recommendations & Admin
+```
+GET    /api/v1/recommendations
+GET    /api/v1/admin/stats
+GET    /api/v1/admin/users
+GET    /api/v1/admin/flagged
+POST   /api/v1/admin/verify
+```
+
+### AI Service (port 5000)
+```
+POST   /recommend
+POST   /fraud-detect
+GET    /health
+```
+
+---
+
+## 🔒 Security
+
+- Passwords hashed with bcrypt (10 rounds)
+- JWT authentication with configurable expiry
+- SQL injection prevention via Sequelize ORM
+- CORS configured with strict origin validation
+- XSS protection via React's built-in escaping
+- Role-based access control across all routes
+- Security headers on all responses
+- No hardcoded secrets — all config via environment variables
+
+---
+
+## 🗄️ Database Schema
+
+| Table | Purpose |
+|-------|---------|
+| `users` | Accounts, roles, verification status |
+| `donations` | Offerings with category and status |
+| `requests` | Receiver requests with urgency levels |
+| `recommendations` | AI-generated donor–receiver matches |
+| `matches` | Confirmed donor–receiver pairs |
+| `messages` | In-platform communication |
+| `verification` | Admin verification records |
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m 'Add your feature'`
+4. Push the branch: `git push origin feature/your-feature`
+5. Open a Pull Request
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ for connecting people who give with people who need.</sub>
+</div>

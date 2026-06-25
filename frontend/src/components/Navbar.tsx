@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -11,6 +12,26 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = () => { logout(); navigate('/'); };
+=======
+/**
+ * Navigation Bar Component
+ * 
+ * Displays navigation menu with user-specific links.
+ */
+
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import BadgeDisplay from './BadgeDisplay';
+
+const Navbar = () => {
+  const { user, logout, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+>>>>>>> 696cb356b46860bca18eb58e67c68483d5d2ca7c
 
   const getDashboardLink = () => {
     if (!user) return '/';
@@ -21,6 +42,7 @@ const Navbar = () => {
   };
 
   return (
+<<<<<<< HEAD
     <nav className="bg-white dark:bg-gray-900 shadow-md border-b border-gray-200 dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
@@ -73,6 +95,99 @@ const Navbar = () => {
               <>
                 <Link to="/login" className="px-4 py-2 text-primary-600 dark:text-primary-400 rounded-md hover:bg-primary-50 dark:hover:bg-primary-900/20 text-sm">Login</Link>
                 <Link to="/signup" className="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 text-sm">Sign Up</Link>
+=======
+    <nav className="bg-white shadow-md">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          <div className="flex items-center">
+            <Link to="/" className="text-2xl font-bold text-primary-600">
+              Givista
+            </Link>
+            {isAuthenticated && (
+              <div className="ml-10 flex space-x-4">
+                <Link
+                  to={getDashboardLink()}
+                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600"
+                >
+                  Dashboard
+                </Link>
+                <Link
+                  to="/recommendations"
+                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600"
+                >
+                  Recommendations
+                </Link>
+                <Link
+                  to="/messages"
+                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600"
+                >
+                  Messages
+                </Link>
+                <Link
+                  to="/verification"
+                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600"
+                >
+                  Verify Profile
+                </Link>
+                <Link
+                  to="/leaderboard"
+                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600"
+                >
+                  Leaderboard
+                </Link>
+                <Link
+                  to="/privacy-settings"
+                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600"
+                >
+                  Privacy Settings
+                </Link>
+              </div>
+            )}
+          </div>
+          <div className="flex items-center space-x-4">
+            {isAuthenticated ? (
+              <>
+                <div className="flex items-center space-x-2">
+                  {user?.badges && user.badges.length > 0 && (
+                    <BadgeDisplay badges={user.badges} showTooltip={true} size="sm" />
+                  )}
+                  {user?.points !== undefined && user.points > 0 && (
+                    <span className="text-sm font-semibold text-primary-600">
+                      {user.points} pts
+                    </span>
+                  )}
+                </div>
+                <span className="text-sm text-gray-700 flex items-center">
+                  {user?.name}
+                  {user?.isVerified && (
+                    <span className="ml-2 text-green-600" title="Verified Profile">
+                      ✅
+                    </span>
+                  )}
+                  <span className="ml-2 text-gray-500">({user?.role})</span>
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="px-4 py-2 text-primary-600 rounded-md hover:bg-primary-50"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/signup"
+                  className="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700"
+                >
+                  Sign Up
+                </Link>
+>>>>>>> 696cb356b46860bca18eb58e67c68483d5d2ca7c
               </>
             )}
           </div>
@@ -83,3 +198,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 696cb356b46860bca18eb58e67c68483d5d2ca7c

@@ -20,7 +20,10 @@ import './models/Request.model';
 import './models/Message.model';
 import './models/Recommendation.model';
 import './models/Match.model';
+<<<<<<< HEAD
 import './models/Rating.model';
+=======
+>>>>>>> 696cb356b46860bca18eb58e67c68483d5d2ca7c
 
 // Import routes
 import authRoutes from './routes/auth.routes';
@@ -32,11 +35,17 @@ import messageRoutes from './routes/message.routes';
 import verificationRoutes from './routes/verification.routes';
 import matchRoutes from './routes/match.routes';
 import adminRoutes from './routes/admin.routes';
+<<<<<<< HEAD
 import { startExpiryScheduler } from './services/expiry.service';
 import donorRoutes from './routes/donor.routes';
 import leaderboardRoutes from './routes/leaderboard.routes';
 import privacyRoutes from './routes/privacy.routes';
 import ratingRoutes from './routes/rating.routes';
+=======
+import donorRoutes from './routes/donor.routes';
+import leaderboardRoutes from './routes/leaderboard.routes';
+import privacyRoutes from './routes/privacy.routes';
+>>>>>>> 696cb356b46860bca18eb58e67c68483d5d2ca7c
 
 // Load environment variables
 dotenv.config();
@@ -122,7 +131,10 @@ app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/donors', donorRoutes);
 app.use('/api/v1/leaderboard', leaderboardRoutes);
 app.use('/api/v1/privacy', privacyRoutes);
+<<<<<<< HEAD
 app.use('/api/v1/ratings', ratingRoutes);
+=======
+>>>>>>> 696cb356b46860bca18eb58e67c68483d5d2ca7c
 
 // 404 handler for undefined routes
 app.use((req: Request, res: Response) => {
@@ -173,8 +185,12 @@ const startServer = async () => {
         
         // Now sync the schema with error handling for constraint issues
         try {
+<<<<<<< HEAD
           // await sequelize.sync({ alter: true });
           await sequelize.sync();
+=======
+          await sequelize.sync({ alter: true });
+>>>>>>> 696cb356b46860bca18eb58e67c68483d5d2ca7c
           console.log('✅ Database models synced.');
         } catch (alterError: any) {
           // Handle constraint/deadlock errors gracefully
@@ -218,6 +234,7 @@ const startServer = async () => {
     }
 
     // Start listening
+<<<<<<< HEAD
     // const server = startExpiryScheduler();
     // const server = app.listen(PORT, '0.0.0.0', () => {
     //   console.log(`🚀 Server is running on http://localhost:${PORT}`);
@@ -225,6 +242,12 @@ const startServer = async () => {
     // });
     startExpiryScheduler();
     const server = app.listen(PORT, '0.0.0.0', () => {});
+=======
+    const server = app.listen(PORT, '0.0.0.0', () => {
+      console.log(`🚀 Server is running on http://localhost:${PORT}`);
+      console.log(`📝 Health check: http://localhost:${PORT}/health`);
+    });
+>>>>>>> 696cb356b46860bca18eb58e67c68483d5d2ca7c
 
     // Handle server errors
     server.on('error', (error: any) => {
