@@ -1,0 +1,31 @@
+===========================================
+GIVISTA PROJECT - INSTALL DEPENDENCIES
+===========================================
+
+Copy and paste these commands ONE BY ONE into PowerShell:
+
+---------------------------------------------------------------
+STEP 1: Install Backend Dependencies
+---------------------------------------------------------------
+
+cd "C:\Users\ingol\Downloads\givista (7)\givista (5)\givista (2)\givista\givista\backend"
+& "C:\Program Files\nodejs\npm.cmd" install
+
+---------------------------------------------------------------
+STEP 2: Install Frontend Dependencies
+---------------------------------------------------------------
+
+cd "C:\Users\ingol\Downloads\givista (7)\givista (5)\givista (2)\givista\givista\frontend"
+& "C:\Program Files\nodejs\npm.cmd" install
+
+---------------------------------------------------------------
+STEP 3: Install AI Service Dependencies
+---------------------------------------------------------------
+
+cd "C:\Users\ingol\Downloads\givista (7)\givista (5)\givista (2)\givista\givista\ai_service"
+py -m pip install -r requirements.txt
+
+---------------------------------------------------------------
+DONE! All dependencies installed.
+---------------------------------------------------------------
+
